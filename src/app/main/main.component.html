@@ -1,0 +1,36 @@
+<div fxLayout="row" style="height: 60px; background: linear-gradient(90deg, rgba(228,227,235,0.8) 0%, rgba(35,56,118,0.8) 20%, rgba(35,56,118,0.8) 100%); position: fixed; width: 100%; z-index: 500; box-shadow: 0px 2px 5px grey;">
+  <div fxLayout="row" style="width: 200px">
+    <div style="width: 150px; padding-top: 5px; padding-bottom: 5px;">
+      <img src="assets/img/Logo_Small.png" height="100%" style="margin-left: 10px">
+    </div>
+    <div fxFlex="fill" fxLayoutAlign="end center">
+      <mat-icon (click)="ToggleSideNav()" style="margin-left: 20px; color: white; cursor: pointer; user-select: none">menu</mat-icon>
+    </div>
+  </div>
+  <div fxFlex="fill" fxLayoutAlign="end center">
+    <button mat-flat-button style="margin-right: 40px; border: 1px solid white; border-radius: 5px; background-color: rgba(0, 0, 0, 0); color: white" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon style="color: white; font-size: 17pt; margin-right: 5px">person</mat-icon> <span>{{LastName + ' ' + FirstName}}</span>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon style="color: #233876">settings</mat-icon>
+        <span>Modifier mon profile</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon style="color: #233876">lock</mat-icon>
+        <span>Modifier mot de passe</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="LogOut()">
+        <mat-icon style="color: red">login</mat-icon>
+        <span>Se déconnecter</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>
+<div fxLayout="row" [ngStyle]="{'padding-left': Open === true? '200px' : '0px'}" style="width: 100%; transition: 0.5s; background-color: ghostwhite; min-height: 100%;">
+  <app-side-bar [Open] = "Open"></app-side-bar>
+  <div fxFlex="fill" style="padding: 20px; margin-top: 60px">
+      <router-outlet></router-outlet>
+  </div>
+</div>

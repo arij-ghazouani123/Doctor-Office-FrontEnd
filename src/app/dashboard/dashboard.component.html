@@ -1,0 +1,218 @@
+<div fxLayout="row">
+
+  <!-- 1 ere -->
+  <div fxFlex="25">
+    <mat-card style="margin: 0px 20px 0px 20px; border-bottom: 2px solid #233876;">
+        <div fxLayout="row">
+          <div fxFlex="40">
+            <img src="assets/img/consultation.png" width="70px" style="margin: 15px">
+          </div>
+          <div fxFlex="50" style="margin: 0px 15px 5px 0px">
+            <div fxLayout="column">
+              <div fxFlex="50">
+                <h3 style="line-height: 20px; font-family: TitilliumWeb-Regular; margin-bottom: 0px; margin-top: 15px; height: 40px">Nbre des visites du mois</h3>
+              </div>
+              <div fxFlex="50" fxLayoutAlign="center center">
+                <font style="font-family: TitilliumWeb-SemiBold; color: #818181; user-select: none; font-size: 18pt">{{NbreAppointmentsMonth}}</font>
+              </div>
+            </div>
+          </div>
+        </div>
+    </mat-card>
+  </div>
+
+
+  <!-- 2 eme -->
+  <div fxFlex="25">
+    <mat-card style="margin: 0px 20px 0px 20px; border-bottom: 2px solid #233876; height: 102px">
+      <div fxLayout="row">
+        <div fxFlex="40">
+          <img src="assets/img/appointment_week.png" width="70px" style="margin: 15px">
+        </div>
+        <div fxFlex="50" style="margin: 0px 15px 5px 0px">
+          <div fxLayout="column">
+            <div fxFlex="50">
+              <h3 style="line-height: 20px; font-family: TitilliumWeb-Regular; margin-bottom: 0px; margin-top: 15px; height: 40px">Nbre des visites de la semaine</h3>
+            </div>
+            <div fxFlex="50" fxLayoutAlign="center center">
+              <font style="font-family: TitilliumWeb-SemiBold; color: #818181; user-select: none; font-size: 18pt">{{NbreAppointmentsWeek}}</font>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+
+  <!-- 3 eme -->
+  <div fxFlex="25">
+    <mat-card style="margin: 0px 20px 0px 20px; border-bottom: 2px solid #233876; height: 102px">
+      <div fxLayout="row">
+        <div fxFlex="40">
+          <img src="assets/img/appointment.png" width="70px" style="margin: 15px">
+        </div>
+        <div fxFlex="50" style="margin: 0px 15px 5px 0px; height: 100%">
+          <div fxLayout="column" style="height: 100%">
+            <div fxFlex="50">
+              <h3 style="line-height: 20px; font-family: TitilliumWeb-Regular; margin-bottom: 0px; margin-top: 15px; height: 40px">Rdv d'aujourd'hui</h3>
+            </div>
+            <div fxFlex="50" fxLayoutAlign="center center">
+              <font style="font-family: TitilliumWeb-SemiBold; color: #818181; user-select: none; font-size: 18pt;">{{TodayAppointment}}</font>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+
+  <!-- 4 eme -->
+  <div fxFlex="25">
+    <mat-card style="margin: 0px 20px 0px 20px; border-bottom: 2px solid #233876;">
+      <div fxLayout="row">
+        <div fxFlex="40">
+          <img src="assets/img/meeting.png" width="70px" style="margin: 15px">
+        </div>
+        <div fxFlex="50" style="margin: 0px 15px 5px 0px">
+          <div fxLayout="column">
+            <div fxFlex="50">
+              <h3 style="line-height: 20px; font-family: TitilliumWeb-Regular; margin-bottom: 0px; margin-top: 15px; height: 40px">Rdv de cette semaine</h3>
+            </div>
+            <div fxFlex="50" fxLayoutAlign="center center">
+              <font style="font-family: TitilliumWeb-SemiBold; color: #818181; user-select: none; font-size: 18pt">86</font>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<!-- Chart Visits by Week -->
+<div fxLayout="row">
+  <div fxFlex="100">
+    <mat-card style="margin-left: 10px">
+      <mat-card-header>
+        <mat-card-title>
+          Nombre de visite par jours
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content style="overflow-y: hidden">
+        <div style="height: 450px; margin-bottom: -45px;" id="chartWeek"></div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div fxLayout="row">
+  <div fxFlex="50">
+    <mat-card style="margin-right: 10px">
+      <mat-card-header>
+        <mat-card-title>
+          Graphe nombre de visite par mois
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content style="overflow-y: hidden">
+        <div style="height: 450px; margin-bottom: -45px;" id="chartdiv"></div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="50">
+    <mat-card style="margin-left: 10px">
+      <mat-card-header>
+        <mat-card-title>
+          Tranche d'age des clients
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content style="overflow-y: hidden">
+        <div style="height: 450px; margin-bottom: -45px;" id="chartAge"></div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Liste des rendez-vous d'aujourd'hui
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="row">
+      <div fxFlex="40%">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Recherche" [(ngModel)]="Search" (keyup)="applyFilter($event.target.value)">
+          <button mat-button *ngIf="Search" matSuffix mat-icon-button aria-label="Clear" (click)="DelSearch()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+    <table mat-table [dataSource]="dataSource">
+      <!-- equip Column -->
+      <ng-container matColumnDef="Num">
+        <th mat-header-cell *matHeaderCellDef> N° </th>
+        <td mat-cell *matCellDef="let element"> {{element.PatID}} </td>
+      </ng-container>
+      <!-- equip Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Nom et prenom </th>
+        <td mat-cell *matCellDef="let element"> {{element.LastName + ' ' + element.FirstName}} </td>
+      </ng-container>
+
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="DateVisit">
+        <th mat-header-cell *matHeaderCellDef> Date et heure </th>
+        <td mat-cell *matCellDef="let element"> {{element.VisitDateDay+'/'+element.VisitDateMonth+'/'+element.VisitDateYear+' à '+ element.VisitTime}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Tel">
+        <th mat-header-cell *matHeaderCellDef> Télephone </th>
+        <td mat-cell *matCellDef="let element"> {{element.Tel}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="NbrVisit">
+        <th mat-header-cell *matHeaderCellDef> Nombre de visites </th>
+        <td mat-cell *matCellDef="let element"> {{element.NbreVisits}}</td>
+      </ng-container>
+
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="LastVisit">
+        <th mat-header-cell *matHeaderCellDef> Dérniere visite </th>
+        <td mat-cell *matCellDef="let element"> {{element.LastVisit ? element.LastVisit : '1 ere visite'}}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="button">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon style="color: #233876">more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item [disabled]="!element.PatID" [routerLink]="['/ListeVisites/PatientDetails', element.PatID]">
+              <mat-icon style="color: #233876">dashboard</mat-icon>
+              <span>Détails du patient</span>
+            </button>
+            <button mat-menu-item  (click)="DelRdv(element.ID)">
+              <mat-icon style="color: red">delete</mat-icon>
+              <span>Annuler</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row style="height: 40px; user-select: none" *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator
+      [length]="100"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <mat-progress-bar *ngIf="LoadingList" mode="indeterminate"></mat-progress-bar>
+  </mat-card-content>
+</mat-card>

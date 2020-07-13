@@ -1,0 +1,74 @@
+
+<mat-card style="margin-bottom: 20px">
+  <mat-card-header>
+    <mat-card-title>
+      Liste des patients
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="row">
+      <div fxFlex="40%">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Recherche" [(ngModel)]="Search" (keyup)="applyFilter($event.target.value)">
+          <button mat-button *ngIf="Search" matSuffix mat-icon-button aria-label="Clear" (click)="DelSearch()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div fxFlex="60%" fxLayoutAlign="end center">
+        <button mat-raised-button style="background-color: #233876; color: white" (click)="openDialog()"><mat-icon style="margin-right: 5px">add</mat-icon> Ajouter un patient</button>
+      </div>
+    </div>
+    <table mat-table [dataSource]="dataSource">
+      <!-- equip Column -->
+      <ng-container matColumnDef="Num">
+        <th mat-header-cell *matHeaderCellDef> N° </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+      <!-- equip Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Nom et prenom </th>
+        <td mat-cell *matCellDef="let element"> {{element.LastName + ' ' + element.FirstName}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Age">
+        <th mat-header-cell *matHeaderCellDef> Age </th>
+        <td mat-cell *matCellDef="let element"> {{element.Age + ' Ans'}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="NbrVisit">
+        <th mat-header-cell *matHeaderCellDef> Nombre de visites </th>
+        <td mat-cell *matCellDef="let element"> {{element.NbreVisits}}</td>
+      </ng-container>
+
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="LastVisit">
+        <th mat-header-cell *matHeaderCellDef> Dérniere visite </th>
+        <td mat-cell *matCellDef="let element"> {{element.LastVisit ? element.LastVisit : 'Non définie'}}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Gender">
+        <th mat-header-cell *matHeaderCellDef> Genre </th>
+        <td mat-cell *matCellDef="let element"> {{element.Gender}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Tel">
+        <th mat-header-cell *matHeaderCellDef> Télephone </th>
+        <td mat-cell *matCellDef="let element"> {{element.PhoneNumber}} </td>
+      </ng-container>
+
+      <tr mat-header-row style="height: 40px; user-select: none" *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row [routerLink]="['PatientDetails', row.ID]"  *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator
+      [length]="100"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <mat-progress-bar *ngIf="LoadingList" mode="indeterminate"></mat-progress-bar>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,6 @@
+<div class="sidenav" [ngStyle]="{'width' : this.Open === true ? '200px': '0px'}">
+  <a [routerLink]="['/Dashboard']" routerLinkActive="ActiveLink" *ngIf="Open">Dashboard</a>
+  <a [routerLink]="['/ListeVisites']" routerLinkActive="ActiveLink" *ngIf="Open">Liste des patients</a>
+  <a [routerLink]="['/ListRdv']" routerLinkActive="ActiveLink" *ngIf="Open">Liste des rendez-vous</a>
+  <a [routerLink]="['/ManageNurses']" routerLinkActive="ActiveLink" *ngIf="Open && ItsDocotr">Gestion des infermiers</a>
+</div>

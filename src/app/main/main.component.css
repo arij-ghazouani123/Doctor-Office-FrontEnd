@@ -1,0 +1,13 @@
+.NotifBar {
+  width: 200px;
+  height: 100vh;
+  background-color: white;
+  top: 60px;
+}
+.NotifContainer {
+  width: 100%;
+  font-size: 10pt;
+  border-bottom: 1px solid #cbcbcb;
+  border-left: 2px solid #233876;
+  padding: 10px;
+}

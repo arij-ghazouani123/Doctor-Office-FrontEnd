@@ -1,0 +1,108 @@
+<h3 style="font-family: TitilliumWeb-SemiBold;">Ajouter un patient</h3>
+<form #f="ngForm">
+<div fxLayout="row">
+  <div fxFlex="50" style="padding-right: 10px">
+    <mat-form-field fxFlex="100">
+      <mat-label>Nom</mat-label>
+      <input matInput placeholder="Nom" required name="Nom" [(ngModel)]="patinetToAdd.LastName">
+    </mat-form-field>
+  </div>
+  <div fxFlex="50" style="padding-left: 10px">
+    <mat-form-field fxFlex="100">
+      <mat-label>Prénom</mat-label>
+      <input matInput placeholder="prenom" required name="prenom" [(ngModel)]="patinetToAdd.FirstName">
+    </mat-form-field>
+  </div>
+</div>
+<div fxLayout="row">
+  <div fxFlex="33" style="padding-right: 20px">
+    <mat-form-field fxFlex="100">
+      <mat-label>Cin</mat-label>
+      <input matInput placeholder="Cin" name="cin" required type="number" [(ngModel)]="patinetToAdd.CIN">
+    </mat-form-field>
+  </div>
+  <div fxFlex="33" style="padding-right: 20px">
+    <mat-form-field fxFlex="100">
+    <mat-label>Genre</mat-label>
+      <mat-select placeholder="prenom" name="prenom" required [(ngModel)]="patinetToAdd.Gender">
+        <mat-option value="homme">Homme</mat-option>
+        <mat-option value="Femme">Femme</mat-option>
+        <mat-option value="Autre">Autre</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxFlex="33" style="padding-right: 20px">
+    <mat-form-field fxFlex="100">
+      <mat-label>Date de naissance</mat-label>
+      <input matInput type="number" name="BirthDate" [(ngModel)]="patinetToAdd.Age" required placeholder="Age">
+    </mat-form-field>
+  </div>
+</div>
+<div fxLayout="row">
+  <div fxFlex="50" style="padding-right: 10px">
+    <mat-form-field fxFlex="100">
+      <mat-label>Adresse</mat-label>
+      <input matInput placeholder="Adresse" name="adresse" [(ngModel)]="patinetToAdd.Adress">
+    </mat-form-field>
+  </div>
+  <div fxFlex="50" style="padding-left: 10px">
+    <mat-form-field fxFlex="100">
+      <mat-label>Télephone</mat-label>
+      <input matInput placeholder="telephone" required type="number" name="tel" [(ngModel)]="patinetToAdd.PhoneNumber">
+    </mat-form-field>
+  </div>
+</div>
+  <div fxLayout="row">
+    <div fxFlex="50" style="padding-right: 10px">
+      <div fxLayout="column">
+      <div fxLayout="row" fxFlex="100">
+      <mat-form-field fxFlex="90">
+        <mat-label>Ajouter une allergie</mat-label>
+        <input matInput placeholder="Ajouter une allergie" name="Ajouter une allergie" [(ngModel)]="AlgyName">
+      </mat-form-field>
+      <button fxFlex="10" mat-icon-button *ngIf="AlgyName !== null" (click)="AddAllergyToArray()"><mat-icon style="color: #233876">add</mat-icon></button>
+      </div>
+        <div fxLayout="row">
+      <div fxFlex="90" *ngIf="allergies.length !== 0" style="border-radius: 5px; margin-top: 15px; padding: 20px; border-bottom: 1px solid #233876; border-left: 1px solid #233876; border-right: 1px solid #233876">
+        <div fxLayout="row"*ngFor="let alg of allergies, let i = index">
+          <div fxFlex="80" >
+            - {{alg.Name}}
+          </div>
+          <div fxFlex="20">
+            <button mat-icon-button style="margin-top: -20px" (click)="RemoveAlg(alg.Name)"><mat-icon style="color: red; font-size: 11pt;">delete</mat-icon></button>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+    <div fxFlex="50" style="padding-left: 10px">
+      <div fxLayout="column">
+        <div fxLayout="row" fxFlex="100">
+          <mat-form-field fxFlex="90">
+            <mat-label>Ajouter une maladie</mat-label>
+            <input matInput placeholder="Ajouter une maladie" name="Ajouter une maladie" [(ngModel)]="IllnessName">
+          </mat-form-field>
+          <button fxFlex="10" mat-icon-button *ngIf="IllnessName !== null" (click)="AddIllnessToArray()"><mat-icon style="color: #233876">add</mat-icon></button>
+        </div>
+        <div fxLayout="row">
+          <div fxFlex="90" *ngIf="Illness.length !== 0" style="border-radius: 5px; margin-top: 15px; padding: 20px; border-bottom: 1px solid #233876; border-left: 1px solid #233876; border-right: 1px solid #233876">
+            <div fxLayout="row"*ngFor="let Ill of Illness, let i = index">
+              <div fxFlex="80" >
+                - {{Ill.Name}}
+              </div>
+              <div fxFlex="20">
+                <button mat-icon-button style="margin-top: -20px" (click)="RemoveIll(Ill.Name)"><mat-icon style="color: red; font-size: 11pt;">delete</mat-icon></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div fxLayout="row" style="margin-top: 40px" fxLayoutAlign="end end">
+  <button mat-raised-button style="color: white; background-color: lightslategrey; margin-right: 15px" mat-dialog-close> Abondonner</button>
+  <button mat-raised-button style="color: white; background-color: #233876" [disabled]="f.invalid" (click)="AddPatient(f)"> <mat-icon style="margin-right: 5px">add</mat-icon>Ajouter</button>
+</div>
+</form>

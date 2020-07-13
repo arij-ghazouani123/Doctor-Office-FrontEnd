@@ -1,0 +1,61 @@
+<h3 style="font-family: TitilliumWeb-SemiBold;">Ajouter un rendez-vous</h3>
+<form #f = "ngForm">
+  <div fxLayout="row">
+    <div fxFlex="50" style="margin-right: 10px">
+      <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="DateNaiss" name="BirthDate" [(ngModel)]="RdvDate" required placeholder="Date de la visite">
+        <mat-datepicker-toggle matSuffix [for]="DateNaiss"></mat-datepicker-toggle>
+        <mat-datepicker #DateNaiss></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div fxFlex="50" style="margin-left: 10px">
+      <div fxLayout="row">
+        <mat-form-field style="width: 60px;">
+          <input matInput placeholder="Heure"  type="number" [(ngModel)]="Hour" name="hh" [max]="23" [min]="00">
+        </mat-form-field>
+        <mat-form-field style="width: 60px; margin-left:5px">
+          <input matInput placeholder="Minute"  type="number" name="mm" [(ngModel)]="Minute" [max]="59" [min]="00">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="row">
+    <div fxFlex="fill" style="margin-right: 10px">
+      <mat-form-field>
+        <mat-label>Patient</mat-label>
+       <mat-select name="client" [disabled]="AddNew">
+         <mat-option (click)="patient = pat" *ngFor="let pat of patients" [value]="pat.ID">{{pat.LastName + ' ' + pat.FirstName}} <div fxFlex="fill" fxLayoutAlign="end center" style="font-family: TitilliumWeb-SemiBold; color: #818181">#{{pat.ID}}</div></mat-option>
+       </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-icon-button style="margin-left: 15px" (click)="AddNew = !AddNew"><mat-icon *ngIf="!AddNew">add</mat-icon><mat-icon *ngIf="AddNew">close</mat-icon></button>
+  </div>
+  <div fxLayout="row" *ngIf="AddNew">
+    <div fxFlex="50" style="margin-right: 10px">
+      <mat-form-field>
+        <mat-label>Nom</mat-label>
+        <input matInput placeholder="Nom" name="Nom" [(ngModel)]="LastName">
+      </mat-form-field>
+    </div>
+    <div fxFlex="50" style="margin-left: 10px">
+      <mat-form-field>
+        <mat-label>Prenom</mat-label>
+        <input matInput placeholder="prenom" name="prenom" [(ngModel)]="FirstName">
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row" *ngIf="AddNew">
+    <div fxFlex="50" style="margin-right: 10px">
+      <mat-form-field>
+        <mat-label>Télephone</mat-label>
+        <input matInput placeholder="tel" name="tel" [(ngModel)]="Phone">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div fxLayout="row" style="width: 100%; margin-top: 20px" fxLayoutAlign="end center">
+    <button mat-raised-button style="color: white; background-color: lightslategrey; margin-right: 15px" mat-dialog-close> Abondonner</button>
+    <button mat-raised-button style="color: white; background-color: #233876" [disabled]="f.invalid" (click)="AddRdv()"> <mat-icon style="margin-right: 5px">add</mat-icon>Ajouter</button> </div>
+</form>
+

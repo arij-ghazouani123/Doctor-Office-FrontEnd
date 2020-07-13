@@ -1,0 +1,29 @@
+<div fxLayout="column" style="width: 100%; height: 100vh; background-color: ghostwhite" fxLayoutAlign="center center">
+  <img src=" assets/img/Logo_Medium.png" width="350px">
+  <form #f = "ngForm">
+  <mat-card style="width: 350px">
+    <mat-card-header>
+      <mat-card-title>
+        Se connecter
+      </mat-card-title>
+      <mat-card-subtitle>
+        Accéder à votre compte
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div fxLayout="column" fxLayoutAlign="center center">
+      <mat-form-field style="width: 100%">
+        <mat-label>Adresse e-mail</mat-label>
+        <input matInput type="email" placeholder="Adresse e-mail" name="login" [(ngModel)]="login" required>
+      </mat-form-field>
+        <mat-form-field style="width: 100%">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" placeholder="Adresse e-mail" name="pwd" [(ngModel)]="Pwd" required>
+      </mat-form-field>
+        <button mat-raised-button (click)="LoginAttempt()" [disabled]="f.invalid" style="width: 100%; background-color: #233876; color: white; margin-top: 40px">Se connecter</button>
+        <button mat-raised-button [routerLink]="['/SignUp']" style="width: 100%; background-color: 	#4dbd74; color: white; margin-top: 10px">Créer un compte</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  </form>
+</div>

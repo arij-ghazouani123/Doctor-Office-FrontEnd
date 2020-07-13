@@ -1,0 +1,124 @@
+<div fxLayout="row">
+  <div fxFlex="60">
+    <mat-card-header>
+      <mat-card-title>
+        {{Patient.PatDetails.LastName + ' ' + Patient.PatDetails.FirstName }} <font style="margin-left: 10px">#{{Patient.PatDetails.ID}}</font>
+      </mat-card-title>
+    </mat-card-header>
+  </div>
+  <div fxFlex="40" fxLayoutAlign="end start">
+    <button mat-icon-button style="margin-left: 15px;" (click)="EditPat()"><mat-icon>edit</mat-icon></button>
+    <button mat-icon-button style="margin-left: 15px;" (click)="DelPat()"><mat-icon style="color: red">delete</mat-icon></button>
+  </div>
+
+</div>
+
+  <mat-card-content style="margin-left: 20px">
+    <div fxLayout="row">
+      <div fxLayout="column" fxFlex="20%">
+        <div>
+          <h4 style="font-family: TitilliumWeb-SemiBold; color: #233876; margin-bottom: 0px">CIN</h4>
+          <p style="border-left: 1px solid #233876; padding-bottom: 10px; padding-left: 10px">{{Patient.PatDetails.CIN}}</p>
+        </div>
+        <div>
+          <h4 style="font-family: TitilliumWeb-SemiBold; color: #233876; margin-bottom: 0px">Age</h4>
+          <p style="border-left: 1px solid #233876; padding-bottom: 10px; padding-left: 10px">{{Patient.PatDetails.Age + 'Ans'}}</p>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="20%">
+        <div>
+          <h4 style="font-family: TitilliumWeb-SemiBold; color: #233876; margin-bottom: 0px">Nombre de visite</h4>
+          <p style="border-left: 1px solid #233876; padding-bottom: 10px; padding-left: 10px"> {{Patient.PatDetails.NbreVisits}}</p>
+        </div>
+        <div>
+          <h4 style="font-family: TitilliumWeb-SemiBold; color: #233876; margin-bottom: 0px;" >Télephone</h4>
+          <p style="border-left: 1px solid #233876; padding-bottom: 10px; padding-left: 10px;">{{Patient.PatDetails.PhoneNumber}}</p>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="20%">
+        <div>
+          <h4 style="font-family: TitilliumWeb-SemiBold; color: #233876; margin-bottom: 0px">Genre</h4>
+          <p style="border-left: 1px solid #233876; padding-bottom: 10px; padding-left: 10px"> {{Patient.PatDetails.Gender}}</p>
+        </div>
+        <div>
+          <h4 style="font-family: TitilliumWeb-SemiBold; color: #233876; margin-bottom: 0px;" >Adresse</h4>
+          <p style="border-left: 1px solid #233876; padding-bottom: 10px; padding-left: 10px;"> {{Patient.PatDetails.Adress}}</p>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="20%">
+        <h4 style="font-family: TitilliumWeb-SemiBold; color: #233876; margin-bottom: 0px">Allérgies</h4>
+        <p style="border-left: 1px solid #233876; padding-bottom: 10px; padding-left: 10px; height: 100%">
+          <font style="width: 100%" *ngFor="let alg of allergies"> - {{alg.Name}}<br></font>
+
+        </p>
+      </div>
+      <div fxLayout="column" fxFlex="20%">
+        <h4 style="font-family: TitilliumWeb-SemiBold; color: #233876; margin-bottom: 0px">Maladies chroniques</h4>
+        <p style="border-left: 1px solid #233876; padding-bottom: 10px; padding-left: 10px; height: 100%">
+          <font style="width: 100%" *ngFor="let ill of Illness"> - {{ill.Name}}<br></font>
+      </p>
+      </div>
+    </div>
+
+  </mat-card-content>
+
+<div fxLayout="row">
+  <div fxFlex="50">
+    <button mat-raised-button [routerLink]="['/ListeVisites']" style="background-color: #233876; color: white; margin-left: 20px; margin-top: 20px"><mat-icon>chevron_left</mat-icon>Retourner à la liste</button>
+  </div>
+  <div fxFlex="50" fxLayoutAlign="end center">
+    <button mat-raised-button (click)="openDialog()" style="background-color: #233876; color: white; margin-right: 20px; margin-top: 20px"><mat-icon>add</mat-icon>Ajouter une visite</button>
+
+  </div>
+</div>
+  <mat-card *ngIf="Visits.length === 0">
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <h2 style="font-family: TitilliumWeb-SemiBold">Aucune visite ajoutée</h2>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card style="margin-top: 20px" *ngFor="let visit of Visits">
+      <div fxLayout="row">
+        <div fxFlex="50%">
+          <mat-card-header>
+            <mat-card-title>
+              Visite #{{visit.ID}}
+            </mat-card-title>
+          </mat-card-header>
+        </div>
+        <div fxFlex="50%" fxLayoutAlign="end center">
+          <mat-card-header>
+            <mat-card-title>
+             {{visit.VisitDate}}
+            </mat-card-title>
+          </mat-card-header>
+        </div>
+        <button mat-icon-button style="margin-left: 15px;" (click)="EditVisit(visit.ID)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button style="margin-left: 15px;" (click)="DelVisit(visit.ID)"><mat-icon style="color: red">delete</mat-icon></button>
+      </div>
+    <mat-card-content>
+
+      <div fxLayout="column" style="padding-right: 30px">
+        <h4 style="font-family: TitilliumWeb-SemiBold; color: #233876; margin-bottom: 0px">Consultation</h4>
+        <p style="border-left: 1px solid #233876; padding-bottom: 10px; padding-left: 10px">
+        {{visit.Consultation}}
+      </div>
+
+<div fxLayout="row">
+      <div fxFlex="50%" style="padding-right: 30px">
+        <h4 style="font-family: TitilliumWeb-SemiBold; color: #233876; margin-bottom: 0px">Les médicaments souscrits</h4>
+        <p style="border-left: 1px solid #233876; padding-bottom: 10px; padding-left: 10px">
+          {{visit.MedsList}}
+        </p>
+      </div>
+
+      <div fxFlex="50%" style="padding-right: 30px">
+        <h4 style="font-family: TitilliumWeb-SemiBold; color: #233876; margin-bottom: 0px">A faire dans la prochaine séance</h4>
+        <p style="border-left: 1px solid #233876; padding-bottom: 10px; padding-left: 10px">
+          {{visit.ToDoNext}}
+        </p>
+      </div>
+</div>
+    </mat-card-content>
+  </mat-card>

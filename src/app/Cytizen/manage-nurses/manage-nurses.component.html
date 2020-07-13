@@ -1,0 +1,89 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Ajouter un infermier
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form #f="ngForm">
+      <div fxLayout="row" fxLayoutAlign="center center" style="width: 100%">
+        <mat-form-field style="width: 60%">
+          <mat-label>
+            Identifiant de l'infermier
+          </mat-label>
+          <input matInput placeholder="Identifiant de l'infermier" name="id" [(ngModel)]="ID">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center" style="width: 100%">
+        <button style="width: 60%; background-color: #233876; color: white" [disabled]="!ID" mat-raised-button (click)="AddNurse(f)"><mat-icon style="color: white; margin-right: 10px">add</mat-icon>Ajouter</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+
+<mat-card style="margin-bottom: 20px">
+  <mat-card-header>
+    <mat-card-title>
+      Liste des infermiers
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="row">
+      <div fxFlex="40%">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Recherche" [(ngModel)]="Search" (keyup)="applyFilter($event.target.value)">
+          <button mat-button *ngIf="Search" matSuffix mat-icon-button aria-label="Clear" (click)="DelSearch()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div fxFlex="60%" fxLayoutAlign="end center">
+      </div>
+    </div>
+    <table mat-table [dataSource]="dataSource">
+      <!-- equip Column -->
+      <ng-container matColumnDef="Num">
+        <th mat-header-cell *matHeaderCellDef> N° </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+      <!-- equip Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Nom et prenom </th>
+        <td mat-cell *matCellDef="let element"> {{element.LastName + ' ' + element.FirstName}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Tel">
+        <th mat-header-cell *matHeaderCellDef> Télephone </th>
+        <td mat-cell *matCellDef="let element"> {{element.Tel}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="BirthDate">
+        <th mat-header-cell *matHeaderCellDef> Date de naissance </th>
+        <td mat-cell *matCellDef="let element"> {{element.BirthDate}}</td>
+      </ng-container>
+
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="JoinDate">
+        <th mat-header-cell *matHeaderCellDef> Date d'ajout </th>
+        <td mat-cell *matCellDef="let element"> {{element.JoinDate}}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="button">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button (click)="RemoveNurse(element.ID)"><mat-icon style="color: red">delete</mat-icon></button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row style="height: 40px; user-select: none" *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-progress-bar *ngIf="LoadingList" mode="indeterminate"></mat-progress-bar>
+  </mat-card-content>
+</mat-card>
+

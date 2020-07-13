@@ -1,0 +1,87 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="width: 100%; height: 100vh; background-color: ghostwhite">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        S'inscrire
+      </mat-card-title>
+      <mat-card-subtitle>
+        Créer un compte
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form #f = "ngForm" (submit)="AddUser()">
+      <div fxLayout="row" fxLayoutAlign="center center">
+      <div fxFlex="33" style="margin-right: 20px">
+        <mat-form-field style="width: 100%">
+          <mat-label>Nom</mat-label>
+          <input matInput placeholder="Nom" [(ngModel)]="userToAdd.LastName" name="nom" required>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33" style="margin-right: 20px">
+        <mat-form-field style="width: 100%">
+          <mat-label>Prenom</mat-label>
+          <input matInput placeholder="Prenom" [(ngModel)]="userToAdd.FirstName" name="prenom" required>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33">
+        <mat-form-field style="width: 100%">
+          <mat-label>Type du compte</mat-label>
+          <mat-select required placeholder="Type du compte" name="type" [(ngModel)]="userToAdd.Type">
+            <mat-option value="doctor">Docteur</mat-option>
+            <mat-option value="infermier">Infermier(e)</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      </div>
+
+        <mat-form-field style="width: 100%">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" [(ngModel)]="userToAdd.Email" placeholder="Email" name="email" required>
+        </mat-form-field>
+
+      <div fxLayout="row" fxLayoutAlign="center center">
+      <div fxFlex="33" style="margin-right: 20px">
+        <mat-form-field style="width: 100%">
+          <mat-label>N° Tél</mat-label>
+          <input matInput placeholder="N° tél" [(ngModel)]="userToAdd.Tel" name="Num" required>
+        </mat-form-field>
+      </div>
+        <div fxFlex="33" style="margin-right: 20px">
+          <mat-form-field style="width: 100%">
+            <mat-label>Date de naissance</mat-label>
+            <input matInput [matDatepicker]="DateNaiss" name="BirthDate" [(ngModel)]="BDate" required placeholder="Date de naissance">
+            <mat-datepicker-toggle matSuffix [for]="DateNaiss"></mat-datepicker-toggle>
+            <mat-datepicker #DateNaiss></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div fxFlex="33">
+          <mat-form-field style="width: 100%">
+            <mat-label>Genre</mat-label>
+            <mat-select required placeholder="Genre" name="gnr" [(ngModel)]="userToAdd.Gender">
+              <mat-option value="Homme">Homme</mat-option>
+              <mat-option value="Femme">Femme</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxFlex="50" style="margin-right: 10px">
+          <mat-form-field style="width: 100%">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput type="password" [(ngModel)]="userToAdd.Password" placeholder="Mot de passe" name="pwd" required>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50" style="margin-left: 10px">
+          <mat-form-field style="width: 100%">
+            <mat-label>Confirmer votre mot de passe</mat-label>
+            <input matInput placeholder="Confirmer votre mot de passe" [(ngModel)]="VerifPwd" type="password" name="Confr" required>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button mat-raised-button type="submit" style="width: 100%; margin-top: 40px; background-color: #233876; color: white"> Créer mon compte</button>
+      <button mat-raised-button [routerLink]="['/login']" style="width: 100%; margin-top: 10px; background-color: #4dbd74; color: white"> Connexion</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

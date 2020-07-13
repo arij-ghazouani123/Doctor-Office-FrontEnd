@@ -1,0 +1,50 @@
+<h3 style="font-family: TitilliumWeb-SemiBold;">Ajouter une visiter</h3>
+<form #f = "ngForm">
+  <div fxLayout="row">
+    <div fxFlex="50" style="margin-right: 10px">
+      <mat-form-field>
+        <mat-label>Date de la visite</mat-label>
+          <input matInput [matDatepicker]="DateNaiss" name="BirthDate" [(ngModel)]="VisitDate" required placeholder="Date de la visite">
+          <mat-datepicker-toggle matSuffix [for]="DateNaiss"></mat-datepicker-toggle>
+          <mat-datepicker #DateNaiss></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div fxFlex="50" style="margin-left: 10px">
+      <div fxLayout="row">
+      <mat-form-field style="width: 60px;">
+        <input matInput placeholder="Heure"  type="number" [(ngModel)]="Hour" name="hh" [max]="23" [min]="00">
+      </mat-form-field>
+      <mat-form-field style="width: 60px; margin-left:5px">
+        <input matInput placeholder="Minute"  type="number" name="mm" [(ngModel)]="Minute" [max]="59" [min]="00">
+      </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="row">
+    <div fxFlex="50" style="margin-right: 10px">
+      <mat-form-field>
+        <mat-label>Consultation</mat-label>
+        <textarea matInput rows="4" name="cons" [(ngModel)]="visitToAdd.Consultation" placeholder="Consultation">
+        </textarea>
+      </mat-form-field>
+    </div>
+    <div fxFlex="50" style="margin-left: 10px">
+      <mat-form-field>
+        <mat-label>Médicaments souscrits</mat-label>
+        <textarea matInput rows="4" name="cons" [(ngModel)]="visitToAdd.MedsList" placeholder="Médicaments souscrits">
+        </textarea>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row">
+    <mat-form-field>
+      <mat-label>A faire dans la prochaine seance</mat-label>
+      <textarea matInput rows="4" name="ToDo" [(ngModel)]="visitToAdd.ToDoNext" placeholder="A faire dans la prochaine seance"></textarea>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" style="width: 100%" fxLayoutAlign="end center">
+    <button mat-raised-button style="color: white; background-color: lightslategrey; margin-right: 15px" mat-dialog-close> Abondonner</button>
+    <button mat-raised-button style="color: white; background-color: #233876" [disabled]="f.invalid" (click)="AddVisit(f)"> <mat-icon style="margin-right: 5px">add</mat-icon>Ajouter</button>
+  </div>
+</form>
+
